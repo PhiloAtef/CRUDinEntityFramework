@@ -31,11 +31,20 @@ namespace assignment17.Context
                 E.Property(e => e.Adress)
                     .HasDefaultValue("Cairo");
             });
-            
-            
+
+           modelBuilder.Entity<Student>()
+          .HasOne<Department>(s => s.Department)
+          .WithMany(d => d.Students)
+          .HasForeignKey(s => s.Dep_Id);
+
+         modelBuilder.Entity<Course>()
+        .HasOne(c => c.Topic)
+        .WithMany(t => t.Courses)
+        .HasForeignKey(c => c.Top_ID);
         }
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<Course> courses { get; set; }
+        public DbSet<Topic> Topics { get; set; }
     }
 }

@@ -21,5 +21,6 @@ namespace assignment17.Entities
         public decimal HourRate { get; set; }
 
         public int Dep_ID { get; set; }
+        public Department Department { get; set; }
     }
 }

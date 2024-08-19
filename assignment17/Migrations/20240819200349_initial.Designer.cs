@@ -12,8 +12,8 @@ using assignment17.Context;
 namespace assignment17.Migrations
 {
     [DbContext(typeof(ITIDbContext))]
-    [Migration("20240819194002_mappingall")]
-    partial class mappingall
+    [Migration("20240819200349_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

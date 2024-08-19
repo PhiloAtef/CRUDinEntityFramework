@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace assignment17.Migrations
 {
     /// <inheritdoc />
-    public partial class initialCreate : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,8 @@ namespace assignment17.Migrations
                 name: "dbo");
 
             migrationBuilder.CreateTable(
-                name: "courses",
+                name: "Courses",
+                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -26,19 +27,20 @@ namespace assignment17.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_courses", x => x.Id);
+                    table.PrimaryKey("PK_Courses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Instructors",
+                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("SqlServer:Identity", "10, 10"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Bonus = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "Cairo"),
                     HourRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Dep_ID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -63,6 +65,7 @@ namespace assignment17.Migrations
                     table.ForeignKey(
                         name: "FK_Departments_Instructors_Ins_ID",
                         column: x => x.Ins_ID,
+                        principalSchema: "dbo",
                         principalTable: "Instructors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -109,7 +112,8 @@ namespace assignment17.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "courses");
+                name: "Courses",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
                 name: "Students",
@@ -119,7 +123,8 @@ namespace assignment17.Migrations
                 name: "Departments");
 
             migrationBuilder.DropTable(
-                name: "Instructors");
+                name: "Instructors",
+                schema: "dbo");
         }
     }
 }

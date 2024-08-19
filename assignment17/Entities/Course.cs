@@ -15,5 +15,8 @@ namespace assignment17.Entities
         public string Name { get; set; }
 
         public string? Description { get; set; }
+
+        public int Top_ID { get; set; }
+        public Topic Topic { get; set; }
     }
 }

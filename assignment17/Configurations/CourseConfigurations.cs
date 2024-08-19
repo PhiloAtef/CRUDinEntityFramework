@@ -17,6 +17,9 @@ namespace assignment17.Configurations
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id).UseIdentityColumn();
             builder.Property(e => e.Name).IsRequired();
+            builder.HasOne<Topic>(c => c.Topic)
+           .WithMany(t => t.Courses)
+           .HasForeignKey(c => c.Top_ID);
         }
     }
 }
